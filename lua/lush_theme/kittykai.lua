@@ -62,8 +62,8 @@ local theme = lush(function()
 		--
 		-- ColorColumn    { }, -- Columns set with 'colorcolumn'
 		-- Conceal        { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-		-- Cursor         { }, -- Character under the cursor
-		-- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
+		Cursor = { bold = true, italic = true }, -- Character under the cursor
+		CurSearch({ fg = hsl(240, 14, 14), bg = hsl(45, 90, 83) }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		-- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		-- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
 		-- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
@@ -83,19 +83,19 @@ local theme = lush(function()
 		-- SignColumn     { }, -- Column where |signs| are displayed
 		-- IncSearch      { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		-- Substitute     { }, -- |:substitute| replacement text highlighting
-		-- LineNr         { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		LineNr({ fg = hsl(300, 5, 60) }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		-- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
 		-- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-		-- CursorLineNr   { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-		-- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
-		-- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
+		CursorLineNr({ fg = hsl(30, 87, 74) }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+		CursorLineFold({ fg = hsl(290, 16, 60) }), -- Like FoldColumn when 'cursorline' is set for the cursor line
+		CursorLineSign({ fg = hsl(290, 16, 60) }), -- Like SignColumn when 'cursorline' is set for the cursor line
 		-- MatchParen     { }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		-- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
 		-- MsgArea        { }, -- Area for messages and cmdline
 		-- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
 		-- MoreMsg        { }, -- |more-prompt|
 		-- NonText        { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-		-- Normal         { }, -- Normal text
+		Normal({ fg = hsl(0, 0, 98), bg = hsl(240, 18, 18) }), -- Normal text
 		-- NormalFloat    { }, -- Normal text in floating windows.
 		-- FloatBorder    { }, -- Border of floating windows.
 		-- FloatTitle     { }, -- Title of floating windows.
@@ -122,7 +122,7 @@ local theme = lush(function()
 		-- TabLineFill    { }, -- Tab pages line, where there are no labels
 		-- TabLineSel     { }, -- Tab pages line, active tab page label
 		-- Title          { }, -- Titles for output from ":set all", ":autocmd" etc.
-		-- Visual         { }, -- Visual mode selection
+		Visual({ bold = true, italic = true, standout = true }), -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
 		-- WarningMsg     { }, -- Warning messages
 		-- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -139,48 +139,48 @@ local theme = lush(function()
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		-- Comment        { }, -- Any comment
+		Comment({ fg = hsl(230, 15, 64) }), -- Any comment
 
 		-- Constant       { }, -- (*) Any constant
-		-- String         { }, --   A string constant: "this is a string"
-		-- Character      { }, --   A character constant: 'c', '\n'
-		-- Number         { }, --   A number constant: 234, 0xff
-		-- Boolean        { }, --   A boolean constant: TRUE, false
-		-- Float          { }, --   A floating point constant: 2.3e10
+		String({ fg = hsl(45, 90, 83) }), --   A string constant: "this is a string"
+		Character({ fg = hsl(280, 44, 80) }), --   A character constant: 'c', '\n'
+		Number({ fg = hsl(280, 44, 80) }), --   A number constant: 234, 0xff
+		Boolean({ fg = hsl(280, 44, 80) }), --   A boolean constant: TRUE, false
+		Float({ fg = hsl(280, 44, 80) }), --   A floating point constant: 2.3e10
 
-		-- Identifier     { }, -- (*) Any variable name
-		-- Function       { }, --   Function name (also: methods for classes)
+		Identifier({ fg = hsl(0, 0, 98) }), -- (*) Any variable name
+		Function({ fg = hsl(90, 55, 68) }), --   Function name (also: methods for classes)
 
-		-- Statement      { }, -- (*) Any statement
+		Statement({ fg = hsl(340, 81, 72) }), -- (*) Any statement
 		-- Conditional    { }, --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
-		-- Operator       { }, --   "sizeof", "+", "*", etc.
+		Operator({ fg = hsl(340, 81, 72) }), --   "sizeof", "+", "*", etc.
 		-- Keyword        { }, --   any other keyword
 		-- Exception      { }, --   try, catch, throw
 
-		-- PreProc        { }, -- (*) Generic Preprocessor
+		PreProc({ fg = hsl(340, 81, 72) }), -- (*) Generic Preprocessor
 		-- Include        { }, --   Preprocessor #include
 		-- Define         { }, --   Preprocessor #define
 		-- Macro          { }, --   Same as Define
 		-- PreCondit      { }, --   Preprocessor #if, #else, #endif, etc.
 
-		-- Type           { }, -- (*) int, long, char, etc.
+		Type({ fg = hsl(200, 85, 80) }), -- (*) int, long, char, etc.
 		-- StorageClass   { }, --   static, register, volatile, etc.
 		-- Structure      { }, --   struct, union, enum, etc.
 		-- Typedef        { }, --   A typedef
 
-		-- Special        { }, -- (*) Any special symbol
+		Special({ fg = hsl(30, 87, 74) }), -- (*) Any special symbol
 		-- SpecialChar    { }, --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
 		-- Delimiter      { }, --   Character that needs attention
 		-- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
 		-- Debug          { }, --   Debugging statements
 
-		-- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
+		Underlined({ fg = hsl(200, 85, 80), gui = "underline", italic = true }), -- Text that stands out, HTML links
 		-- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-		-- Error          { }, -- Any erroneous construct
-		-- Todo           { }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+		Error({ fg = hsl(0, 56, 56), bg = hsl(0, 30, 19) }), -- Any erroneous construct
+		Todo({ fg = hsl(197, 73, 56), bg = hsl(204, 35, 20) }), -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
 		-- These groups are for the native LSP client and diagnostic system. Some
 		-- other LSP clients may use these groups, or use their own. Consult your
@@ -197,31 +197,31 @@ local theme = lush(function()
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		-- DiagnosticError            { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticWarn             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticHint             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
-		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
-		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
-		-- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
-		-- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
-		-- DiagnosticUnderlineError   { } , -- Used to underline "Error" diagnostics.
-		-- DiagnosticUnderlineWarn    { } , -- Used to underline "Warn" diagnostics.
-		-- DiagnosticUnderlineInfo    { } , -- Used to underline "Info" diagnostics.
-		-- DiagnosticUnderlineHint    { } , -- Used to underline "Hint" diagnostics.
-		-- DiagnosticUnderlineOk      { } , -- Used to underline "Ok" diagnostics.
-		-- DiagnosticFloatingError    { } , -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
-		-- DiagnosticFloatingWarn     { } , -- Used to color "Warn" diagnostic messages in diagnostics float.
-		-- DiagnosticFloatingInfo     { } , -- Used to color "Info" diagnostic messages in diagnostics float.
-		-- DiagnosticFloatingHint     { } , -- Used to color "Hint" diagnostic messages in diagnostics float.
-		-- DiagnosticFloatingOk       { } , -- Used to color "Ok" diagnostic messages in diagnostics float.
-		-- DiagnosticSignError        { } , -- Used for "Error" signs in sign column.
-		-- DiagnosticSignWarn         { } , -- Used for "Warn" signs in sign column.
-		-- DiagnosticSignInfo         { } , -- Used for "Info" signs in sign column.
-		-- DiagnosticSignHint         { } , -- Used for "Hint" signs in sign column.
-		-- DiagnosticSignOk           { } , -- Used for "Ok" signs in sign column.
+		DiagnosticError({ fg = hsl(0, 56, 56) }), -- Error diagnostic text
+		DiagnosticWarn({ fg = hsl(48, 86, 56) }), -- Warning diagnostic text
+		DiagnosticInfo({ fg = hsl(197, 73, 56) }), -- Info diagnostic text
+		DiagnosticHint({ fg = hsl(120, 48, 55) }), -- Hint diagnostic text
+		DiagnosticOk({ fg = hsl(120, 48, 55) }), -- Ok diagnostic text
+		DiagnosticVirtualTextError({ fg = hsl(0, 56, 56) }), -- Error virtual text
+		DiagnosticVirtualTextWarn({ fg = hsl(48, 86, 56) }), -- Warning virtual text
+		DiagnosticVirtualTextInfo({ fg = hsl(197, 73, 56) }), -- Info virtual text
+		DiagnosticVirtualTextHint({ fg = hsl(120, 48, 55) }), -- Hint virtual text
+		DiagnosticVirtualTextOk({ fg = hsl(120, 48, 55) }), -- Ok virtual text
+		DiagnosticUnderlineError({ underline = true }), -- Underline for error diagnostics
+		DiagnosticUnderlineWarn({ gui = "undercurl" }), -- Underline for warning diagnostics
+		DiagnosticUnderlineInfo({ gui = "undercurl" }), -- Underline for info diagnostics
+		DiagnosticUnderlineHint({ gui = "undercurl" }), -- Underline for hint diagnostics
+		DiagnosticUnderlineOk({ gui = "undercurl" }), -- Underline for ok diagnostics
+		DiagnosticFloatingError({ fg = hsl(0, 56, 56), bg = hsl(0, 30, 19) }), -- Error diagnostic float
+		DiagnosticFloatingWarn({ fg = hsl(48, 86, 56), bg = hsl(28, 54, 20) }), -- Warning diagnostic float
+		DiagnosticFloatingInfo({ fg = hsl(197, 73, 56), bg = hsl(204, 35, 20) }), -- Info diagnostic float
+		DiagnosticFloatingHint({ fg = hsl(120, 48, 55), bg = hsl(120, 32, 16) }), -- Hint diagnostic float
+		DiagnosticFloatingOk({ fg = hsl(120, 48, 55), bg = hsl(120, 32, 16) }), -- Ok diagnostic float
+		DiagnosticSignError({ fg = hsl(0, 56, 56) }), -- Error signs in the sign column
+		DiagnosticSignWarn({ fg = hsl(48, 86, 56) }), -- Warning signs in the sign column
+		DiagnosticSignInfo({ fg = hsl(197, 73, 56) }), -- Info signs in the sign column
+		DiagnosticSignHint({ fg = hsl(120, 48, 55) }), -- Hint signs in the sign column
+		DiagnosticSignOk({ fg = hsl(120, 48, 55) }),
 
 		-- Tree-Sitter syntax groups.
 		--
